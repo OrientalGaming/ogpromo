@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
+    <!-- 【可修改】页面标题，多语言切换时会动态更新 -->
+    <title>OG周年庆 | 视讯推广活动</title>
+
+    <!-- Google Fonts - 【可修改】如需更换字体，替换以下链接 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- 引入外部CSS样式文件 -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- ==================== 【HTML结构区域 - 如需修改布局/内容结构请在此调整】 ==================== -->
+    <div class="promo-wrapper">
+
+        <!-- 顶部导航栏 -->
+        <div class="top-bar">
+            <div class="brand-logo-area">
+                <!-- 【可修改】OG Logo图片地址 -->
+                <img class="og-icon" src="https://lobby.pwqr820.com/assets/OGlogo-B3T8AsBa.svg" alt="OG Logo"
+                onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E🎰%3C/text%3E%3C/svg%3E'">
+                <!-- 【可修改】品牌名称文本 -->
+                <span class="og-text">Oriental Gaming</span>
+            </div>
+            <!-- 语言切换按钮区域 - 由JS动态生成 -->
+            <div class="country-icons" id="langSwitcher"></div>
+        </div>
+
+        <!-- 主内容区域 -->
+        <div class="hero-jelly">
+            <!-- 标题区域 -->
+            <div class="game-title">
+                <!-- 【可修改】主标题 - 多语言时由JS动态替换 -->
+                <h1 id="mainTitle"><span class="dynamic-icon">💰</span> OG周年庆 <span class="dynamic-icon">💰</span></h1>
+                <!-- 【可修改】副标题 - 多语言时由JS动态替换 -->
+                <p id="subTagline"><span class="emoji-animate emoji-pulse">💎</span> 每日锦标赛 · 视讯推广活动 <span class="emoji-animate emoji-pulse">💎</span></p>
+            </div>
+
+            <!-- Banner横幅区域 -->
+            <div class="banner-area">
+                <!-- 【可修改】Banner图片 - src由JS动态设置，可在script.js的ACTIVITY_CONFIG中修改 -->
+                <img id="bannerImage" src="" alt="Promotion Banner">
+            </div>
+
+            <!-- 双列布局 -->
+            <div class="two-columns">
+                <!-- 左列 -->
+                <div class="left-panel">
+                    <!-- 活动信息卡片 -->
+                    <div class="info-card">
+                        <!-- 【可修改】活动周期标签 -->
+                        <div class="date-badge-large" id="periodLabel"><span class="emoji-animate emoji-float">📅</span> 活动周期</div>
+                        <!-- 【可修改】活动日期范围 - 由JS根据ACTIVITY_CONFIG自动生成 -->
+                        <div id="periodDateRange" style="font-weight:700; font-size:1.2rem; margin: 10px 0; color:#8b5a2b;"></div>
+                        <!-- 【可修改】总奖池金额文本 -->
+                        <div class="prize-amount" id="totalPrizeStr"><span class="emoji-animate emoji-glow">🎯</span> 总奖池 ¥1,000,000</div>
+                        <!-- 【可修改】获奖者描述 -->
+                        <div class="small-note" id="winnerCountStr"><span class="emoji-animate emoji-bounce">🏆</span> OG所有幸运玩家将赢得奖励</div>
+
+                        <!-- 倒计时区域 -->
+                        <div class="countdown-combined" id="countdownCombinedBox">
+                            <!-- 活动开始倒计时 -->
+                            <div class="countdown-block countdown-start" id="countdownStartBox">
+                                <div class="countdown-label" id="countdownStartLabel"><span class="emoji-animate emoji-pulse">⏳</span> 距活动开始</div>
+                                <div class="timer-digits" id="countdownStartDigits">
+                                    <div class="countdown-days" id="countdownStartDays">--天</div>
+                                    <div class="countdown-hms" id="countdownStartHMS">--时 --分 --秒</div>
+                                </div>
+                            </div>
+                            <!-- 活动结束倒计时 -->
+                            <div class="countdown-block countdown-end" id="countdownEndBox">
+                                <div class="countdown-label" id="countdownEndLabel"><span class="emoji-animate emoji-shake">⌛</span> 距活动结束</div>
+                                <div class="timer-digits" id="countdownEndDigits">
+                                    <div class="countdown-days" id="countdownEndDays">--天</div>
+                                    <div class="countdown-hms" id="countdownEndHMS">--时 --分 --秒</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 赛程安排卡片 -->
+                    <div class="info-card">
+                        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                            <!-- 【可修改】赛程标题 -->
+                            <span id="dailyScheduleTitle" style="font-size:1.2rem;"><span class="emoji-animate emoji-float">📆</span> 赛程 & 每日奖池</span>
+                        </div>
+                        <!-- 赛程列表 - 由JS动态生成 -->
+                        <div class="schedule-list" id="scheduleList"></div>
+                    </div>
+                </div>
+
+                <!-- 右列 -->
+                <div class="right-panel">
+                    <!-- 积分公式区域 -->
+                    <div class="score-formula" style="background: transparent; border: none; box-shadow: none; padding: 0; margin-bottom: 16px;">
+                        <!-- 【可修改】积分公式标题 -->
+                        <div id="scoreTitle" style="font-size:1.2rem; font-weight:700;"><span class="emoji-animate emoji-shake">🎲</span> 锦标赛积分公式</div>
+                        <!-- 【可修改】积分公式内容 -->
+                        <div class="formula" id="scoreFormula"></div>
+                        <!-- 【可修改】积分示例说明 -->
+                        <div class="small-note" id="exampleNote" style="font-size:1rem; margin-top: 4px;"></div>
+                    </div>
+                    <!-- 【可修改】活动规则标题 -->
+                    <div id="rulesTitle" style="font-size:1.4rem; font-weight:700; margin-bottom:4px;"><span class="emoji-animate emoji-bounce">🍭</span> 活动规则</div>
+                    <!-- 规则列表 - 由JS动态生成 -->
+                    <ul class="rules-list" id="rulesList"></ul>
+                    <!-- 【可修改】资格提示 -->
+                    <div class="qualified-hint" id="qualifiedHint"></div>
+                </div>
+            </div>
+
+            <!-- 页脚条款 -->
+            <!-- 【可修改】通用条款文本 -->
+            <div class="footer-terms" id="globalTerms"><span class="emoji-animate emoji-glow">⚡</span> 一般条款与规则适用。 Oriental Gaming 保留彻底审查玩家活动以识别潜在滥用行为的权利，确保公平性。若发现滥用行为，将没收奖励金额。请参阅完整条款。</div>
+        </div>
+    </div>
+
+    <!-- 引入外部JavaScript文件 -->
+    <script src="script.js"></script>
+</body>
+</html>

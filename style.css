@@ -1,0 +1,635 @@
+/* ==================== styles.css ==================== */
+/* 【可修改区域说明】 */
+/* 1. CSS变量集中定义区（建议将主题色提取为变量以便统一修改） */
+/* 2. @keyframes动画参数（动画速度、位移距离等） */
+/* 3. body背景渐变 */
+/* 4. .promo-wrapper的圆角、阴影等容器样式 */
+/* 5. 各组件颜色值（品牌色、强调色、文字色等） */
+/* 6. 响应式断点 @media (max-width: 780px) 内的样式 */
+/* 7. 字体大小层级 */
+/* ==================================================== */
+
+/* ---------- 【可修改】CSS变量（建议集中管理主题色） ---------- */
+:root {
+    --color-primary: #d98c2b;
+    --color-primary-dark: #c76e2e;
+    --color-accent: #f5b042;
+    --color-accent-light: #fbe6b0;
+    --color-bg-start: #fef9e6;
+    --color-bg-end: #f6ebd2;
+    --color-card-bg: #fffcf5;
+    --color-topbar-bg: #d4bfa5;
+    --color-text-dark: #3e2a1f;
+    --color-text-brown: #8b5a2b;
+    --color-text-muted: #9b7a54;
+    --color-border-light: #fee3b5;
+    --color-border-dashed: #e7d5bc;
+    --font-primary: 'Inter', sans-serif;
+    --font-mono: 'Inter', monospace;
+    --radius-lg: 20px;
+    --radius-md: 16px;
+    --radius-sm: 14px;
+    --radius-pill: 40px;
+    --shadow-card: 0 8px 18px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 240, 0.8);
+    --shadow-banner: 0 12px 24px rgba(0, 0, 0, 0.1);
+    --shadow-wrapper: 0 20px 40px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+/* ==================== 【可修改】动态图标动画集合 ==================== */
+.dynamic-icon {
+    display: inline-block;
+    font-size: 1.3em;
+    /* 【可修改】调整动画速度：0.8s */
+    animation: bounce 0.8s ease-in-out infinite;
+    /* 【可修改】图标颜色和阴影 */
+    color: #f5b042;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* 【可修改】弹跳动画 - 调整位移距离(-8px)和旋转角度(10deg) */
+@keyframes bounce {
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-8px) rotate(10deg);
+    }
+}
+
+/* 【可修改】发光动画 - 调整光晕颜色和范围 */
+@keyframes glow {
+    0%,
+    100% {
+        text-shadow: 0 0 0px gold;
+    }
+    50% {
+        text-shadow: 0 0 10px gold, 0 0 20px orange;
+    }
+}
+
+/* 【可修改】脉冲动画 - 调整缩放比例(1.15) */
+@keyframes pulse {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+/* 【可修改】浮动动画 - 调整浮动距离(-6px)和周期(2s) */
+@keyframes float {
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+/* 【可修改】摇晃动画 - 调整摇晃角度(8deg)和周期(1.2s) */
+@keyframes shake {
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(8deg);
+    }
+    75% {
+        transform: rotate(-8deg);
+    }
+}
+
+/* 动画类 - 【可修改】各动画的持续时间 */
+.icon-bounce {
+    display: inline-block;
+    animation: bounce 0.7s ease-in-out infinite;
+}
+.icon-glow {
+    display: inline-block;
+    animation: glow 1.5s ease-in-out infinite;
+}
+.icon-pulse {
+    display: inline-block;
+    animation: pulse 0.8s ease-in-out infinite;
+}
+.icon-float {
+    display: inline-block;
+    animation: float 2s ease-in-out infinite;
+}
+.icon-shake {
+    display: inline-block;
+    animation: shake 1.2s ease-in-out infinite;
+}
+
+/* ==================== 全局重置 ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 【可修改】body背景渐变颜色 */
+body {
+    font-family: var(--font-primary);
+    background: linear-gradient(135deg, var(--color-bg-start) 0%, var(--color-bg-end) 100%);
+    min-height: 100vh;
+    padding: 20px;
+    font-size: 1.05rem;
+}
+
+/* 【可修改】主容器样式 - 背景、圆角、阴影 */
+.promo-wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+    background: rgba(255, 252, 245, 0.96);
+    border-radius: var(--radius-lg) var(--radius-lg) var(--radius-md) var(--radius-md);
+    box-shadow: var(--shadow-wrapper);
+    overflow: hidden;
+    backdrop-filter: blur(0px);
+}
+
+/* 【可修改】顶部导航栏样式 */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 32px;
+    background: var(--color-topbar-bg);
+    color: var(--color-text-dark);
+    flex-wrap: wrap;
+    gap: 12px;
+    border-bottom: 1px solid #e8d5be;
+}
+
+.brand-logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* 【可修改】Logo图标大小和阴影 */
+.og-icon {
+    height: 46px;
+    width: auto;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    animation: float 3s ease-in-out infinite;
+}
+
+/* 【可修改】品牌文字渐变颜色 */
+.og-text {
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.country-icons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* 【可修改】语言切换按钮样式 */
+.country-btn {
+    background: #e2d0b8;
+    border: none;
+    border-radius: 20px;
+    padding: 7px 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    opacity: 0.85;
+}
+
+.country-btn img {
+    width: 30px;
+    height: 30px;
+    display: block;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.country-btn:hover img {
+    transform: scale(1.15) rotate(5deg);
+}
+
+/* 【可修改】激活状态按钮颜色 */
+.country-btn.active {
+    background: #e8944a;
+    opacity: 1;
+    transform: scale(1.05);
+    box-shadow: 0 0 0 2px #ffd27a;
+}
+
+.country-btn.active img {
+    animation: pulse 1s ease-in-out infinite;
+}
+
+.country-btn:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+    background: #ecdcc5;
+}
+.country-btn.active:hover {
+    background: #e8944a;
+}
+
+/* 【可修改】主内容区域内边距 */
+.hero-jelly {
+    padding: 32px 32px 32px;
+}
+
+.game-title {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+/* 【可修改】主标题字号和渐变 */
+.game-title h1 {
+    font-size: 3.4rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    letter-spacing: -0.5px;
+}
+
+/* 【可修改】副标题样式 */
+.game-title p {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text-brown);
+    background: #fff3e0;
+    display: inline-block;
+    padding: 8px 24px;
+    border-radius: var(--radius-pill);
+}
+
+/* 【可修改】Banner区域 */
+.banner-area {
+    margin: 24px 0 32px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-banner);
+}
+
+.banner-area img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.banner-area img:hover {
+    transform: scale(1.02);
+}
+
+/* 双列布局 */
+.two-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin: 24px 0 20px;
+}
+
+/* 【可修改】信息卡片通用样式 */
+.info-card,
+.score-formula,
+.right-panel {
+    background: var(--color-card-bg);
+    border-radius: var(--radius-md);
+    padding: 22px;
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--color-border-light);
+}
+
+.info-card {
+    margin-bottom: 20px;
+}
+
+/* 【可修改】日期徽章 */
+.date-badge-large {
+    font-size: 1.8rem;
+    font-weight: 800;
+    background: var(--color-accent-light);
+    display: inline-block;
+    padding: 6px 22px;
+    border-radius: var(--radius-pill);
+    color: var(--color-text-brown);
+}
+
+/* 【可修改】奖金额度样式 */
+.prize-amount {
+    font-size: 2.3rem;
+    font-weight: 900;
+    color: var(--color-primary-dark);
+    margin: 14px 0 10px;
+}
+
+.small-note {
+    color: var(--color-text-muted);
+    font-weight: 600;
+    margin-top: 10px;
+    font-size: 1.4rem;
+}
+
+/* 【可修改】倒计时组合容器 */
+.countdown-combined {
+    background: #f3ede3;
+    border-radius: var(--radius-sm);
+    padding: 16px 16px;
+    text-align: center;
+    margin-top: 20px;
+    border: 1px solid var(--color-border-dashed);
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 0;
+}
+
+.countdown-block {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 8px;
+}
+
+.countdown-block:first-child {
+    border-right: 1px dashed var(--color-border-dashed);
+}
+
+/* 【可修改】倒计时标签 */
+.countdown-block .countdown-label {
+    color: #b4621a;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+
+.countdown-block .timer-digits {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+/* 【可修改】倒计时数字样式 */
+.countdown-days {
+    font-size: 1.6rem;
+    font-weight: 900;
+    font-family: var(--font-mono);
+    background: #ffffffc9;
+    display: inline-block;
+    padding: 5px 14px;
+    border-radius: 30px;
+    color: var(--color-primary-dark);
+    box-shadow: inset 0 0 0 1px #f3e1c0;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.countdown-hms {
+    font-size: 1.1rem;
+    font-weight: 800;
+    font-family: var(--font-mono);
+    background: #ffffffc9;
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 30px;
+    color: #b45f1b;
+    box-shadow: inset 0 0 0 1px #f3e1c0;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+/* 【可修改】倒计时状态文字（进行中/已结束） */
+.countdown-status {
+    font-size: 1.2rem;
+    font-weight: 800;
+    font-family: var(--font-mono);
+    background: #ffffffc9;
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 30px;
+    box-shadow: inset 0 0 0 1px #f3e1c0;
+    line-height: 1.3;
+    white-space: nowrap;
+}
+
+/* 赛程列表 */
+.schedule-list {
+    margin: 16px 0 8px;
+}
+
+.schedule-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px dashed #f0dbb4;
+    font-weight: 500;
+    font-size: 1.05rem;
+}
+
+/* 【可修改】周标签高亮样式 */
+.week-highlight {
+    font-weight: 800;
+    color: #e67e22;
+    background: #fff0df;
+    padding: 5px 14px;
+    border-radius: 30px;
+    font-size: 1rem;
+}
+
+.score-formula {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* 【可修改】公式展示区域 */
+.formula {
+    font-family: monospace;
+    background: #f5e5cf;
+    padding: 14px;
+    border-radius: var(--radius-sm);
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin: 12px 0;
+    color: #b45f1b;
+}
+
+/* 【可修改】右侧面板 */
+.right-panel {
+    background: linear-gradient(125deg, #fffaf2, #fff6ea);
+    padding: 20px 20px 18px;
+    display: flex;
+    flex-direction: column;
+}
+
+.rules-list {
+    list-style: none;
+    margin: 10px 0 12px;
+    flex: 1;
+}
+
+.rules-list li {
+    padding: 7px 0 7px 28px;
+    position: relative;
+    font-weight: 500;
+    border-bottom: 1px solid #ffe0b5;
+    font-size: 1.05rem;
+}
+
+/* 【可修改】规则列表前的图标 - 可更换emoji或使用其他图标 */
+.rules-list li::before {
+    content: "💰";
+    position: absolute;
+    left: 0;
+    top: 6px;
+    font-size: 1.1rem;
+    animation: bounce 0.8s ease-in-out infinite;
+    display: inline-block;
+}
+
+/* 【可修改】资格提示框 */
+.qualified-hint {
+    background: #e6f0d5;
+    padding: 12px 18px;
+    border-radius: 20px;
+    font-weight: 600;
+    color: #3a6b2f;
+    text-align: center;
+    margin-top: auto;
+    font-size: 1.1rem;
+}
+
+/* 【可修改】页脚条款区域 */
+.footer-terms {
+    background: #f5ede1;
+    border-radius: var(--radius-sm);
+    padding: 16px 24px;
+    font-size: 0.85rem;
+    color: #8e7652;
+    text-align: center;
+    margin-top: 20px;
+    line-height: 1.6;
+}
+
+/* Emoji动画类 */
+.emoji-animate {
+    display: inline-block;
+}
+.emoji-bounce {
+    animation: bounce 0.7s ease-in-out infinite;
+}
+.emoji-glow {
+    animation: glow 1.5s ease-in-out infinite;
+}
+.emoji-pulse {
+    animation: pulse 0.8s ease-in-out infinite;
+}
+.emoji-float {
+    animation: float 2s ease-in-out infinite;
+}
+.emoji-shake {
+    animation: shake 1.2s ease-in-out infinite;
+}
+
+/* ==================== 【可修改】响应式布局 - 移动端适配 ==================== */
+@media (max-width: 780px) {
+    .two-columns {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+    .game-title h1 {
+        font-size: 2.4rem;
+    }
+    .game-title p {
+        font-size: 1.2rem;
+    }
+    .top-bar {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+    .country-icons {
+        justify-content: center;
+    }
+    .hero-jelly {
+        padding: 20px 20px 24px;
+    }
+    .countdown-combined {
+        flex-direction: column;
+        gap: 0;
+    }
+    .countdown-block:first-child {
+        border-right: none;
+        border-bottom: 1px dashed var(--color-border-dashed);
+    }
+    .countdown-days {
+        font-size: 1.4rem;
+        padding: 4px 12px;
+    }
+    .countdown-hms {
+        font-size: 0.95rem;
+        padding: 3px 8px;
+        word-break: break-all;
+    }
+    .countdown-status {
+        font-size: 1rem;
+    }
+    .countdown-block .countdown-label {
+        font-size: 0.85rem;
+    }
+    .dynamic-icon {
+        font-size: 1.1rem;
+    }
+    .date-badge-large {
+        font-size: 1.4rem;
+    }
+    .prize-amount {
+        font-size: 1.7rem;
+    }
+    .info-card,
+    .score-formula,
+    .right-panel {
+        padding: 16px;
+        border-radius: 12px;
+    }
+    .right-panel {
+        padding-bottom: 14px;
+    }
+    .rules-list li {
+        padding: 6px 0 6px 28px;
+    }
+    .qualified-hint {
+        margin-top: 8px;
+        padding: 10px 16px;
+    }
+    .promo-wrapper {
+        border-radius: var(--radius-sm) var(--radius-sm) 10px 10px;
+    }
+    .footer-terms {
+        margin-top: 16px;
+        padding: 14px 18px;
+    }
+    .score-formula {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
